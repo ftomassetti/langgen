@@ -5,13 +5,15 @@ from random import Random
 import itertools
 
 # Load language samples from the given directory
-def load_samples(path='lang_samples'):
+def load_all_lang_samples(path='lang_samples'):
 	lang_files = [ f for f in listdir(path) if isfile(join(path,f)) ]
 	lang_samples = {}
 	for lf in lang_files:
 		with open(join(path,lf)) as f:
 			content = f.readlines()
-		lang_samples[lf[0:-4]] = content
+		# remove the extension
+		lang_name = lf[0:-4]
+		lang_samples[lang_name] = content
 	return lang_samples
 
 # Represent a single language, able to generate "similar" names.
@@ -184,24 +186,20 @@ class Language:
 				combinations.append([index, total])
 		return combinations
 
-def generate_random_language_sample():
-	samples = lang_samples()
-	lang_a = random.choice(samples.keys())
-	lang_b = random.choice(samples.keys())
-	#print('Mixing %s and %s' % (lang_a,lang_b))
-	SAMPLE_SIZE = 100
-	n_a = random.randint(0,SAMPLE_SIZE)
-	n_b = SAMPLE_SIZE-n_a 
-	#print('Proportion: %i and %i' % (n_a,n_b))
+def mix_two_samples(samples_a,samples_b,sample_size=100):
+	n_a = random.randint(0,sample_size)
+	n_b = sample_size-n_a 
 	sample = []
 	for i in xrange(n_a):
-		sample.append(random.choice(samples[lang_a]).lower().strip())
+		sample.append(random.choice(samples_a).lower().strip())
 	for i in xrange(n_b):
-		sample.append(random.choice(samples[lang_b]).lower().strip())
+		sample.append(random.choice(samples_b).lower().strip())
 	return sample
 
-def generate_language():
-	sample = generate_random_language_sample()
-	language = Language.language_from_samples(sample)
-	return language
-	
+def extract_and_mix_samples(lang_samples,sample_size=100):
+	lang_a = random.choice(lang_samples.keys())
+	lang_b = random.choice(lang_samples.keys())
+	samples_a = lang_samples[lang_a]
+	samples_b = lang_samples[lang_b]
+	return mix_two_samples(samples_a,samples_b,sample_size)
+

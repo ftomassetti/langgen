@@ -40,3 +40,9 @@ class TestNamegen(unittest.TestCase):
             self.assertTrue(name[4:6] in ["na","ne","ni","no","nu"])
             self.assertTrue(name[6:8] in ["na","ne","ni","no","nu"])
             self.assertTrue(name[8:10] in ["na","ne","ni","no","nu"])
+
+    def test_load_all_lang_samples(self):
+        lang_samples = load_all_lang_samples()
+        self.assertTrue('elven' in lang_samples.keys())
+        self.assertTrue('beowulf' in lang_samples.keys())
+        self.assertTrue('roman' in lang_samples.keys())
