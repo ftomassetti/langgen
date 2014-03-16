@@ -1,7 +1,7 @@
-from namegen.namegen import *
+from langgen.langgen import *
 import unittest
 
-class TestNamegen(unittest.TestCase):
+class Testlanggen(unittest.TestCase):
 
     def test_with_one_syllable(self):
         examples = ['na','nana','nanana','nanana']

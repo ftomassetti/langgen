@@ -6,7 +6,7 @@ import codecs
 import os
 import sys
 
-import sandman
+from langgen import langgen
 
 here = os.path.abspath(os.path.dirname(__file__))
 
@@ -33,9 +33,9 @@ class PyTest(TestCommand):
         sys.exit(errcode)
 
 setup(
-    name='namegen',
-    version=namegen.__version__,
-    url='http://github.com/ftomassetti/namegen/',
+    name='langgen',
+    version=langgen.__version__,
+    url='http://github.com/ftomassetti/langgen/',
     license='Apache Software License',
     author='Federico Tomassetti',
     tests_require=['nose'],
@@ -44,10 +44,10 @@ setup(
     author_email='f.tomassetti@gmail.com',
     description='Languages and names generator',
     long_description=long_description,
-    packages=['namegen'],
+    packages=['langgen'],
     include_package_data=True,
     platforms='any',
-    test_suite='namegen.test.test_namegen',
+    test_suite='langgen.test.test_langgen',
     classifiers = [
         'Programming Language :: Python',
         'Development Status :: 4 - Beta',
