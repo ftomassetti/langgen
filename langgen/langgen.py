@@ -26,6 +26,7 @@ class Language:
 		if seed==None:
 			seed=random.randint(0,2**16)
 
+		samples = [s.strip().replace(" ","_").lower() for s in samples]
 		sample_str = ' '+(' '.join(samples))+ ' '
 		syllables = Language._get_best_syllables(2, frac_2s, sample_str)
 
@@ -53,8 +54,7 @@ class Language:
 		self.max_syl = 4
 
 	def name(self,capitalize=True):
-		if num_syllables==None:
-			num_syllables = self.rnd.randint(self.min_syl, self.max_syl)
+		num_syllables = self.rnd.randint(self.min_syl, self.max_syl)
 		
 		# turn ends list of tuples into a dictionary
 		ends_dict = dict(self.ends)
@@ -77,6 +77,7 @@ class Language:
 		word_str = ''.join(word)			
 		if capitalize:
 			word_str = word_str.capitalize()
+		word_str = word_str.replace("_"," ")
 		return word_str
 
 	def name_fixed_length(self,num_syllables=None,capitalize=True):
@@ -112,6 +113,7 @@ class Language:
 		word_str = ''.join(word)			
 		if capitalize:
 			word_str = word_str.capitalize()
+		word_str = word_str.replace("_"," ")
 		return word_str		
 
 	def _select_syllable(self, counts, end_count, noneAllowed=True):
