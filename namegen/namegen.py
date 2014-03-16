@@ -4,6 +4,8 @@ import random
 from random import Random
 import itertools
 
+__version__ = "0.1"
+
 # Load language samples from the given directory
 def load_all_lang_samples(path='lang_samples'):
 	lang_files = [ f for f in listdir(path) if isfile(join(path,f)) ]
