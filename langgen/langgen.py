@@ -4,7 +4,7 @@ import random
 from random import Random
 import itertools
 
-__version__ = "0.1"
+__version__ = "0.1.3"
 
 # Load language samples from the given directory
 def load_all_lang_samples(path='lang_samples'):
@@ -66,13 +66,15 @@ class Language:
 		# start word with the first syllable
 		syl = self._select_syllable(self.starts, 0)
 		word = [self.syllables[syl]]
-		while len(word) < (num_syllables-1):	
+		while len(word) < (num_syllables-1) and syl!=None:	
 			# select next syllable
 			syl = self._select_syllable(self.combinations[syl], 0)			
-			word.append(self.syllables[syl])
+			if syl!=None:
+				word.append(self.syllables[syl])
 		
 		syl = self._select_syllable(self.ends, 0)
-		word.append(self.syllables[syl])
+		if syl!=None:
+			word.append(self.syllables[syl])
 			
 		word_str = ''.join(word)			
 		if capitalize:

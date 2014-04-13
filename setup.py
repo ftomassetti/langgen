@@ -19,7 +19,7 @@ def read(*filenames, **kwargs):
             buf.append(f.read())
     return sep.join(buf)
 
-long_description = read('README.md')
+#long_description = read('README.md')
 
 class PyTest(TestCommand):
     def finalize_options(self):
@@ -43,7 +43,7 @@ setup(
                     ],
     author_email='f.tomassetti@gmail.com',
     description='Languages and names generator',
-    long_description=long_description,
+    #long_description=long_description,
     packages=['langgen'],
     include_package_data=True,
     platforms='any',
